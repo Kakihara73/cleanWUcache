@@ -2,7 +2,9 @@
 NET STOP bits
 NET STOP wuauserv
 ping 127.0.0.1 > nul
-RD /S /Q %windir%SoftwareDistribution
+IF EXIST %windir%\SoftwareDistribution.OLD RD /S /Q %windir%\SoftwareDistribution.OLD
+CD %windir%
+REN SoftwareDistribution SoftwareDistribution.OLD
 ping 127.0.0.1 > nul
 NET START wuauserv
 NET START bits
